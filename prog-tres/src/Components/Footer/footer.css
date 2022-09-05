@@ -1,0 +1,14 @@
+footer {
+    position:absolute;
+    display: flex;
+    bottom:0;
+    height:60px; 
+    background-color: cadetblue;
+    font-size: 20px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 20px;
+    justify-content: space-evenly;
+    color: rgb(255,255,255);
+    font-weight: 600;
+    width: calc(100% - 40px);
+}
