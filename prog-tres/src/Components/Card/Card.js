@@ -17,7 +17,7 @@ class Card extends Component {
 
                 <img src={`https://image.tmdb.org/t/p/w200/${this.props.datosPelicula.poster_path}`} alt="" />
                 <h2>{this.props.datosPelicula.title}</h2> {/* Nombre */}
-                <Link to={`/detallePersonaje/id/${this.props.datosPelicula.id}`}>
+                <Link to={`/detallePelicula/id/${this.props.datosPelicula.id}`}>
                     <a> Ir a detalles </a>  
                     </Link>
               
