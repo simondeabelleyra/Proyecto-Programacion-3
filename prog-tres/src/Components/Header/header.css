@@ -27,6 +27,11 @@
 
 a{
     text-decoration: none;
+    color: rgb(250, 250, 250);
+}
+
+a:hover{
+    border-bottom: solid 2px rgb(255, 255, 255);
     color: rgb(255, 255, 255);
 }
 

@@ -1,0 +1,24 @@
+.detail-card{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: rgb(236, 236, 236);
+    display: flex;
+    padding: 20px;
+    margin: 20px;
+}
+
+.detail-card img{
+    height: 70vh;
+}
+
+.detail-card div{
+    margin-left: 30px;
+}
+
+.title-detail{
+    font-size: 50px;
+}
+
+.detail-card p{
+    font-size: 20px;
+}

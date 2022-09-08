@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from '../Card/Card';
+import './home.css'
 
 class Home extends Component{
     constructor(props) {
@@ -25,7 +26,7 @@ class Home extends Component{
         
         return(
             <React.Fragment>
-                
+                <h2 className="title-home">Más populares</h2>
                 <section className='cardContainer'>
                     { 
                         this.state.personajes.map( (unaPelicula, idx) => <Card  key={unaPelicula.name+idx} datosPelicula={unaPelicula} />)
