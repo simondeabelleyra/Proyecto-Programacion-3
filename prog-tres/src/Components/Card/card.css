@@ -31,3 +31,7 @@ box-shadow: 0rem 0rem 10px 8px rgb(110 156 159 / 25%);
 .show{
     display: block;
 }
+
+.boton:hover{
+    cursor: pointer;
+}
