@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './card.css'
 
-class Card extends Component {
+class Detalle extends Component {
     constructor(props) {
         super(props)
         this.state = {
 
         }
     }
-
     render() {
         // console.log(this.props);
         return (
@@ -29,7 +27,7 @@ class Card extends Component {
 
         )
     }
-
+    
 }
 
-export default Card
+export default Detalle;

@@ -1,3 +1,7 @@
+.movie-card a{
+    color:black;
+}
+
 .movie-card{
     padding: 10px;
     margin-bottom: 20px;

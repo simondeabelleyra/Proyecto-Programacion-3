@@ -28,7 +28,7 @@ class Home extends Component{
                 
                 <section className='cardContainer'>
                     { 
-                        this.state.personajes.map( (unaPelicula, idx) => <Card key={unaPelicula.name+idx} datosPelicula={unaPelicula} />)
+                        this.state.personajes.map( (unaPelicula, idx) => <Card  key={unaPelicula.name+idx} datosPelicula={unaPelicula} />)
                     }
                 </section>
             </React.Fragment>

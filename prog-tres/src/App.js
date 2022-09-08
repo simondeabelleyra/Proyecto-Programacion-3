@@ -6,6 +6,7 @@ import Footer from './Components/Footer/Footer';
 import Favoritos from './Components/Favoritos/Favoritos';
 import Peliculas from './Components/Peliculas/Peliculas';
 import SeeAll from './Components/SeeAll/SeeAll';
+import Detalle from './Components/Detail/Detalle';
 
 import {Link, Route, Switch} from 'react-router-dom';
 
@@ -20,6 +21,7 @@ function App() {
         <Route path='/favoritos' component={ Favoritos }/>
         <Route path='/peliculas' component={ Peliculas }/>
         <Route path='/ver-todos' component={ SeeAll }/>
+        <Route path='/detallePelicula/id/:id' component={Detalle}/>
       </Switch>
     <Footer/>
     </React.Fragment>
