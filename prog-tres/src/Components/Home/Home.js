@@ -19,10 +19,9 @@ class Home extends Component {
             .then(res => res.json())
             .then(data => this.setState({
                 peliculas: data.results,
-                peliculasIniciales: data.results,
-
+                peliculasIniciales: data.results
             }))
-            .catch()
+            .catch(err => console.log(err))
     }
 
     buscarPeliculas(peliculaBuscada) {

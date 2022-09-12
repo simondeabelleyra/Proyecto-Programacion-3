@@ -25,6 +25,7 @@ class Detalle extends Component {
                 companies: data.production_companies[0],
                 country: data.production_countries[0]
             }))
+            .catch(err => console.log(err))
 
         let favoritos = [];
         let recuperoStorage = localStorage.getItem('favoritos');
