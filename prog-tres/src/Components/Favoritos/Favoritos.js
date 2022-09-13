@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Card from '../Card/Card';
-import './favoritos.css'
+import './favoritos.css';
+import { Link } from 'react-router-dom';
 
 class Favoritos extends Component {
     constructor(props) {
@@ -52,31 +53,39 @@ class Favoritos extends Component {
     }
 
     render() {
+        console.log(this.state.peliculas)
         return (
             <React.Fragment>
                 <h2 className="titulos">Favoritos</h2>
                 <section className='cardContainer'>
-                    
+
                     {this.state.peliculas.length > 0 ?
                         this.state.peliculas.map((unaPelicula, idx) =>
-                            <div>
-                                <Card key={unaPelicula.title + idx} datosPelicula={unaPelicula} />
+                            <article className='movie-card' key={idx}>
+
+                                <img src={`https://image.tmdb.org/t/p/w500/${unaPelicula.poster_path}`} alt="" />
+                                <h2>{unaPelicula.title}</h2> {/* Nombre */}
+                                <Link to={`/detallePelicula/id/${unaPelicula.id}`}>
+                                    <a> Ir a detalles </a>
+                                </Link>
                                 <p className="delete" onClick={() => {
                                     this.state.borrar.push(unaPelicula.id);
                                     this.setState({
-                                        peliculas: this.state.peliculas.filter(pelicula => 
+                                        peliculas: this.state.peliculas.filter(pelicula =>
                                             !this.state.borrar.includes(pelicula.id)
                                         )
                                     });
                                     this.borrar(unaPelicula.id)
                                 }}
-                                
                                 >Quitar de favoritos</p>
-                            </div>
+                                <p className='more'>Ver más</p>
+
+                            </article>
+
                         )
-                    :
+                        :
                         <h3>Todavía no elegiste ningún favorito!</h3>
-                        
+
                     }
                 </section>
             </React.Fragment>

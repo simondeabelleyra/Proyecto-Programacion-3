@@ -9,3 +9,51 @@ section.cardContainer{
     margin: 40px 20px 20px 20px;
     font-size: 35px;
 }
+
+.buscador-home{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    background-color: rgb(0,0,0);
+    color: rgb(255,255,255);
+    padding: 20px;
+}
+
+.buscador-home form{
+    display: flex;
+}
+
+.buscador-home form input {
+    border: none;
+    border-bottom: solid 2px rgb(255,255,255);
+    font-size: 20px;
+    color: rgb(255,255,255);
+    background-color: rgb(0,0,0);
+    font-weight: 600;
+    outline: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.buscador-home form button {
+    background-color: rgb(0,0,0);
+    border: none;
+    border-bottom: solid 2px rgb(255,255,255);
+    font-size: 20px;
+}
+
+.buscador-home form button:hover{
+    cursor: pointer;
+}
+
+.buscador-home form button i {
+    border: none;
+    color: rgb(255,255,255);
+    background-color: rgb(0,0,0);
+}
+
+.buscador-home h2 {
+    font-size: 25px;
+    margin: 0px 0px 0px 20px;
+}
+
