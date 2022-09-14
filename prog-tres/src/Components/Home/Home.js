@@ -13,7 +13,8 @@ class Home extends Component {
             peliculas: [],
             peliculasIniciales: [],
             valor: '',
-            peliculasT: []
+            resultadosDeBusuqeda: [],
+            mensaje: ''
         };
     };
 
@@ -39,16 +40,25 @@ class Home extends Component {
         event.preventDefault()
         fetch(`https://api.themoviedb.org/3/search/movie?query=${this.state.valor}&api_key=1845c94396255a256363182ed898e8fc&language=en-US`)
         .then(response => response.json())
-        .then(data => this.setState({
-            peliculas: data.results
-        }))
+        .then(data => {this.setState({
+            resultadosDeBusuqeda: data.results   
+        });
+        if (data.results.length === 0) {
+            this.setState({
+                mensaje: 'No se enontraron resultados'
+            })
+            
+        }
+        
+    })
         .catch(error => console.log(error))
 
     }
 
     controlarCambios(event){
         this.setState(
-            {valor: event.target.value}, 
+            {valor: event.target.value,
+            mensaje: ''}, 
             ()=>console.log(event.target.value))
     }
 
@@ -67,7 +77,13 @@ class Home extends Component {
                         </button>} */}
                         <button type="submit"><i className="fa fa-search"></i></button>
                     </form>
+                    <p>{this.state.mensaje}</p>
                 </div>           
+                  
+                <section className='cardContainer'>
+                    {this.state.resultadosDeBusuqeda.map((peliculaBuscada, idx) => <Card key={peliculaBuscada.name + idx} datosPelicula={peliculaBuscada} />) }
+                </section>
+
 
                 <h2 className="title-home">Más populares</h2>
                 <section className='cardContainer'>
@@ -75,6 +91,7 @@ class Home extends Component {
                         this.state.peliculas.map((unaPelicula, idx) => <Card key={unaPelicula.name + idx} datosPelicula={unaPelicula} />)
                     }
                 </section>
+
             </React.Fragment>
         )
     }
