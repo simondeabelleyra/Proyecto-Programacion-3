@@ -8,6 +8,7 @@ import Peliculas from './Components/Peliculas/Peliculas';
 import SeeAll from './Components/SeeAll/SeeAll';
 import Detalle from './Components/Detail/Detail';
 
+
 import {Link, Route, Switch} from 'react-router-dom';
 
 
