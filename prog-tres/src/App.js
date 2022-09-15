@@ -4,7 +4,7 @@ import Header from './Components/Header/Header';
 import Home from './Components/Home/Home';
 import Footer from './Components/Footer/Footer';
 import Favoritos from './Components/Favoritos/Favoritos';
-import Peliculas from './Components/Peliculas/Peliculas';
+import Estrenos from './Components/Estrenos/Estrenos';
 import SeeAll from './Components/SeeAll/SeeAll';
 import Detalle from './Components/Detail/Detail';
 
@@ -20,8 +20,8 @@ function App() {
       <Switch>
         <Route path='/' exact component={ Home }/>
         <Route path='/favoritos' component={ Favoritos }/>
-        <Route path='/peliculas' component={ Peliculas }/>
-        <Route path='/ver-todos' component={ SeeAll }/>
+        <Route path='/estrenos' component={ Estrenos }/>
+        <Route path='/populares' component={ SeeAll }/>
         <Route path='/detallePelicula/id/:id' component={Detalle}/>
       </Switch>
     <Footer/>

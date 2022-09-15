@@ -13,8 +13,8 @@ function Header(props){
             </div>
             <div className="list-header">
                 <Link to='/favoritos'>Favoritos</Link>
-                <Link to='/peliculas'>Películas</Link>
-                <Link to='/ver-todos'>Ver todos</Link>
+                <Link to='/estrenos'>Estrenos</Link>
+                <Link to='/populares'>Populares</Link>
             </div>
         </nav>
     )

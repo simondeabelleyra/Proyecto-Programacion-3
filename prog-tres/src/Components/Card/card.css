@@ -19,6 +19,10 @@
 box-shadow: 0rem 0rem 10px 8px rgb(110 156 159 / 25%);
 }
 
+.movie-card:hover{
+    background-color: rgb(230,230,230);
+}
+
 .more{
     color: blue;
 }
