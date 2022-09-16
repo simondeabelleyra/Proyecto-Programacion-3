@@ -1,0 +1,8 @@
+.not-found{
+    height: calc(100vh - 180px);
+    display: flex;   
+}
+
+.not-found img{
+    width: 100%;
+}

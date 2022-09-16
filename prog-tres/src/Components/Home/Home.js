@@ -14,7 +14,8 @@ class Home extends Component {
             peliculasIniciales: [],
             valor: '',
             resultadosDeBusuqeda: [],
-            mensaje: ''
+            mensaje: '',
+            loader: true
         };
     };
 
@@ -24,7 +25,8 @@ class Home extends Component {
             .then(res => res.json())
             .then(data => this.setState({
                 peliculas: data.results,
-                peliculasIniciales: data.results
+                peliculasIniciales: data.results,
+                loader: false
             }))
             .catch(err => console.log(err))
     }
@@ -65,25 +67,22 @@ class Home extends Component {
 
     render() {
         return (
-            <React.Fragment>
-
-                {/* <Buscador buscarPeliculas={(peliculaBuscada) => this.buscarPeliculas(peliculaBuscada)} /> */}
+            <main>
                 <div className="buscador-home">
                 <h2>Busca acá:</h2>
                     <form onSubmit={(event) => this.buscadorP(event)}>
                         <input type="text" onChange={(event) => this.controlarCambios(event)} value={this.state.valor} />
-                        {/* {<button type='submit'>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} /> 
-                        </button>} */}
                         <button type="submit"><i className="fa fa-search"></i></button>
                     </form>
                     <p>{this.state.mensaje}</p>
-                </div>           
-                  
-                <section className='cardContainer'>
+                </div>  
+
+                {this.state.loader === true ? 
+                <img  src='../../images/loader.gif' /> :
+                <React.Fragment>
+                <section className='cardContainer'>    
                     {this.state.resultadosDeBusuqeda.map((peliculaBuscada, idx) => <Card key={peliculaBuscada.name + idx} datosPelicula={peliculaBuscada} />) }
                 </section>
-
 
                 <h2 className="title-home">Más populares</h2>
                 <section className='cardContainer'>
@@ -91,8 +90,10 @@ class Home extends Component {
                         this.state.peliculas.map((unaPelicula, idx) => <Card key={unaPelicula.name + idx} datosPelicula={unaPelicula} />)
                     }
                 </section>
-
-            </React.Fragment>
+                </React.Fragment>
+                }
+                
+            </main>
         )
     }
 

@@ -13,6 +13,7 @@ class Detalle extends Component {
             companies: {},
             country: {},
             mensaje: 'Agregar a favoritos',
+            loader: true
         }
     }
 
@@ -23,7 +24,8 @@ class Detalle extends Component {
                 datosPelicula: data,
                 genres: data.genres[0].name,
                 companies: data.production_companies[0],
-                country: data.production_countries[0]
+                country: data.production_countries[0],
+                loader: false
             }))
             .catch(err => console.log(err))
 
@@ -71,7 +73,9 @@ class Detalle extends Component {
 
     render() {
         return (
-            
+            <React.Fragment>
+                {this.state.loader === true ?
+                <img  src='../../images/loader.gif' /> :
             <article className='detail-card'>
 
                 <img src={`https://image.tmdb.org/t/p/w500/${this.state.datosPelicula.poster_path}`} alt="" />
@@ -88,7 +92,8 @@ class Detalle extends Component {
                 </div>
 
             </article>
-
+                }
+            </React.Fragment>
         )
     }
     

@@ -9,7 +9,8 @@ class Favoritos extends Component {
         this.state = {
             props: props,
             peliculas: [],
-            borrar: []
+            borrar: [],
+            loader: true
         };
     };
 
@@ -30,6 +31,7 @@ class Favoritos extends Component {
                         peliculas.push(data)
                         this.setState({
                             peliculas: peliculas,
+                            loader: false
                         });
                     })
                     .catch(err => console.log(err))
@@ -55,7 +57,10 @@ class Favoritos extends Component {
     render() {
         console.log(this.state.peliculas)
         return (
-            <React.Fragment>
+            <main>
+                {this.state.loader === true ? 
+                <img  src='../../images/loader.gif' /> :
+                <React.Fragment>
                 <h2 className="titulos">Favoritos</h2>
                 <section className='cardContainer'>
 
@@ -88,7 +93,8 @@ class Favoritos extends Component {
 
                     }
                 </section>
-            </React.Fragment>
+                </React.Fragment>}
+            </main>
         )
     }
 }

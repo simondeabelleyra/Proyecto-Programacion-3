@@ -6,7 +6,8 @@ class Card extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            mensaje: 'Agregar a favoritos'
+            mensaje: 'Agregar a favoritos',
+            more: false
         }
     }
 
@@ -54,9 +55,18 @@ class Card extends Component {
         console.log(localStorage);
     }
 
+    toggleMas(){
+        this.state.more === false ?
+        this.setState({
+            more: true
+        })
+        :
+        this.setState({
+            more: false
+        })
+    }
 
     render() {
-        // console.log(this.props);
         return (
             <article className='movie-card'>
 
@@ -65,9 +75,15 @@ class Card extends Component {
                 <Link to={`/detallePelicula/id/${this.props.datosPelicula.id}`}>
                     <a> Ir a detalles </a>  
                 </Link>
-                <p className="boton" onClick={()=>this.modificarFavoritos(this.props.datosPelicula.id)}>{this.state.mensaje}</p>
-                <p className='more'>Ver más</p>
-                
+                <p className="boton" onClick={() => this.modificarFavoritos(this.props.datosPelicula.id)}>{this.state.mensaje}</p>
+                {this.state.more === true ?
+                <React.Fragment>
+                    <p>{this.props.datosPelicula.overview}</p>
+                    <p className='more' onClick={() => this.toggleMas()}>Ver menos</p>
+                    </React.Fragment>
+                :
+                <p className='more' onClick={() => this.toggleMas()}>Ver más</p>
+                }
 
             </article>
 
