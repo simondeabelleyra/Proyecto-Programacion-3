@@ -14,6 +14,7 @@ class Home extends Component {
             peliculasIniciales: [],
             valor: '',
             resultadosDeBusuqeda: [],
+            peliculasEnCartel: [],
             mensaje: '',
             loader: true
         };
@@ -29,7 +30,17 @@ class Home extends Component {
                 loader: false
             }))
             .catch(err => console.log(err))
+
+            fetch('https://api.themoviedb.org/3/movie/now_playing?api_key=1845c94396255a256363182ed898e8fc&language=en-US&page=1')
+            .then(response => response.json())
+            .then(data => this.setState({
+                peliculasEnCartel: data.results,
+                loader: false
+
+            }))
+            .catch(error => console.log(error));
     }
+
 
     // buscarPeliculas(peliculaBuscada) {
     //     let peliculasFiltradas = this.state.peliculasIniciales.filter(pelicula => pelicula.title.toLowerCase().includes(peliculaBuscada.toLowerCase()));
@@ -89,6 +100,11 @@ class Home extends Component {
                     {
                         this.state.peliculas.map((unaPelicula, idx) => <Card key={unaPelicula.name + idx} datosPelicula={unaPelicula} />)
                     }
+                </section >
+
+                <h2 className="title-home">Estrenos</h2>
+                <section className= 'cardContainer'>
+                    {this.state.peliculasEnCartel.map((unaPeliculaC, idxx)=> <Card key={unaPeliculaC.name + idxx} datosPelicula={unaPeliculaC}/>)}
                 </section>
                 </React.Fragment>
                 }
