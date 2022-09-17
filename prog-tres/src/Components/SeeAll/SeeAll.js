@@ -18,26 +18,29 @@ class SeeAll extends Component {
 
     filter(event) {
         event.preventDefault();
+
+        let peliculasFiltradas = this.state.resultadosDeBusuqeda.filter(pelicula => pelicula.title.toLowerCase().includes(this.state.valor.toLowerCase()));
         this.setState({
-            popularMovies: this.state.popularMovies.filter(pelicula => 
-                    pelicula.title != undefined ?
-                    pelicula.title.toLowerCase().includes(this.state.valor):
-                    console.log(pelicula.title)
-                )
+            peliculas: peliculasFiltradas,
         })
+        
     }
 
-    controlarCambios(event){
-        event.target.value === '' ?
-        this.componentDidMount() :
+    controlarCambios(event) {
+
+
         this.setState({
             valor: event.target.value
         },
-        () => console.log(event.target.value))
+            () => console.log(event.target.value))
+        let peliculasFiltradas = this.state.resultadosDeBusuqeda.filter(pelicula => pelicula.title.toLowerCase().includes(this.state.valor.toLowerCase()));
+        this.setState({
+            peliculas: peliculasFiltradas,
+        })
     }
 
     verMas() {
-        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=1845c94396255a256363182ed898e8fc&language=en-US&page=${this.state.page}`) 
+        fetch(`https://api.themoviedb.org/3/movie/popular?api_key=1845c94396255a256363182ed898e8fc&language=en-US&page=${this.state.page}`)
             .then(response => response.json())
             .then(data => this.setState({
                 popularMovies: this.state.popularMovies.concat(data.results)
@@ -73,19 +76,19 @@ class SeeAll extends Component {
                     </form>
                     <p>{this.state.mensaje}</p>
                 </div>
-                {this.state.loader === true ? 
-                <img  src='../../images/loader.gif' /> :
-                <React.Fragment>
-                <h2 className='title-home'>Popular movies</h2>
-                
-                <section className='cardContainer'>
-                    {this.state.popularMovies.map((oneMovie,idx)=><Card key={oneMovie+idx} datosPelicula={oneMovie}/>)}
-                </section>
-                <div className='div-vermas'>
-                <button className='load-more' onClick={() => this.verMas()}>Load More</button>
-                </div>
-                </React.Fragment>
-                }   
+                {this.state.loader === true ?
+                    <img src='../../images/loader.gif' /> :
+                    <React.Fragment>
+                        <h2 className='title-home'>Popular movies</h2>
+
+                        <section className='cardContainer'>
+                            {this.state.popularMovies.map((oneMovie, idx) => <Card key={oneMovie + idx} datosPelicula={oneMovie} />)}
+                        </section>
+                        <div className='div-vermas'>
+                            <button className='load-more' onClick={() => this.verMas()}>Load More</button>
+                        </div>
+                    </React.Fragment>
+                }
             </main>
         )
     }
