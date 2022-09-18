@@ -25,3 +25,7 @@
     background-color: rgb(255,255,255);
     border: solid 2px rgb(0,0,0);
 }
+
+.no-results{
+    margin: 20px;
+}

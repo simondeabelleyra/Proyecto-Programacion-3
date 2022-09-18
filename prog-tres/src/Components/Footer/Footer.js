@@ -6,9 +6,9 @@ function Footer(props){
     return(
         <footer>
             <p>Marcos Bordeu</p>
-            <p>|</p>
+            <p className="separador">|</p>
             <p>Simón de Abelleyra</p>
-            <p>|</p>
+            <p className="separador">|</p>
             <p>Felipe Sanguinetti</p>
         </footer>
     )

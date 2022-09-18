@@ -13,6 +13,7 @@ class Detalle extends Component {
             companies: {},
             country: {},
             mensaje: 'Agregar a favoritos',
+            iconFav: 'fa-regular fa-heart',
             loader: true
         }
     }
@@ -38,7 +39,8 @@ class Detalle extends Component {
 
         if (favoritos.includes(this.state.id)) {
             this.setState({
-                mensaje: 'Quitar de favoritos'
+                mensaje: 'Quitar de favoritos',
+                iconFav: 'fa-solid fa-heart'
             });
         };
     }
@@ -55,12 +57,14 @@ class Detalle extends Component {
             let sacarFav = favoritos.indexOf(id);
             favoritos.splice(sacarFav, 1);
             this.setState({
-                mensaje: 'Agregar a favoritos'
+                mensaje: 'Agregar a favoritos',
+                iconFav: 'fa-regular fa-heart'
             })
         } else {
             favoritos.push(id);
             this.setState({
-                mensaje: 'Quitar de favoritos'
+                mensaje: 'Quitar de favoritos',
+                iconFav: 'fa-solid fa-heart'
             })
         }
 
@@ -88,7 +92,7 @@ class Detalle extends Component {
                     <p>Generos: {this.state.genres}</p>
                     <p>Producción: {this.state.companies.name}</p>
                     <p>País de producción: {this.state.country.name}</p>
-                    <p className="boton" onClick={()=>this.modificarFavoritos(this.state.id)}>{this.state.mensaje}</p>
+                    <p className="boton" onClick={()=>this.modificarFavoritos(this.state.id)}><i className={this.state.iconFav}></i> {this.state.mensaje}</p>
                 </div>
 
             </article>

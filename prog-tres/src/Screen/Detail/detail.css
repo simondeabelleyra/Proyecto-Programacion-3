@@ -22,3 +22,14 @@
 .detail-card p{
     font-size: 20px;
 }
+
+@media (max-width: 480px){
+    .detail-card img{
+        width: 100%;
+        height: auto;
+    }
+
+    .detail-card{
+        flex-wrap: wrap;
+    }
+}

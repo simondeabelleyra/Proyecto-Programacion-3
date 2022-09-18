@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import Card from '../Card/Card';
-import './home.css'
-import Buscador from '../Buscador/Buscador';
-/* import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons' */
+import Card from '../../Components/Card/Card';
+import './home.css';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
     constructor(props) {
@@ -13,7 +11,7 @@ class Home extends Component {
             peliculas: [],
             peliculasIniciales: [],
             valor: '',
-            resultadosDeBusuqeda: [],
+            resultadosDeBusqueda: [],
             peliculasEnCartel: [],
             mensaje: '',
             loader: true
@@ -60,7 +58,7 @@ class Home extends Component {
                 .then(response => response.json())
                 .then(data => {
                     this.setState({
-                        resultadosDeBusuqeda: data.results
+                        resultadosDeBusqueda: data.results
                     });
                     if (data.results.length === 0) {
                         this.setState({
@@ -79,13 +77,15 @@ class Home extends Component {
         this.setState(
             {
                 valor: event.target.value,
-                mensaje: ''
+                mensaje: '',
+                resultadosDeBusqueda: []
             },
-            () => console.log(event.target.value))
+            () => console.log(event.target.value));
     }
 
 
     render() {
+        console.log(localStorage)
         return (
             <main>
                 <div className="buscador-home">
@@ -98,20 +98,30 @@ class Home extends Component {
                 </div>
 
                 {this.state.loader === true ?
-                    <img src='../../images/loader.gif' /> :
+                    <img src='../../images/loader.gif' alt="Loader"/>  :
                     <React.Fragment>
                         <section className='cardContainer'>
-                            {this.state.resultadosDeBusuqeda.map((peliculaBuscada, idx) => <Card key={peliculaBuscada.name + idx} datosPelicula={peliculaBuscada} />)}
+                            {this.state.resultadosDeBusqueda.map((peliculaBuscada, idx) => <Card key={peliculaBuscada.name + idx} datosPelicula={peliculaBuscada} />)}
                         </section>
 
-                        <h2 className="title-home">Más populares</h2>
+                        <div className='title-seeall'>
+                            <h2 className="title-condiv">Más populares</h2>
+                            <Link to='/populares'>
+                                <i className='fa-solid fa-plus'></i> ver todas
+                            </Link>
+                        </div>
                         <section className='cardContainer'>
                             {
                                 this.state.peliculas.map((unaPelicula, idx) => <Card key={unaPelicula.name + idx} datosPelicula={unaPelicula} />)
                             }
                         </section >
-
-                        <h2 className="title-home">Estrenos</h2>
+                        
+                        <div className='title-seeall'>
+                            <h2 className="title-home">Estrenos</h2>
+                            <Link to='/estrenos'>
+                                <i className='fa-solid fa-plus'></i> ver todas
+                            </Link>
+                        </div>
                         <section className='cardContainer'>
                             {this.state.peliculasEnCartel.map((unaPeliculaC, idxx) => <Card key={unaPeliculaC.name + idxx} datosPelicula={unaPeliculaC} />)}
                         </section>

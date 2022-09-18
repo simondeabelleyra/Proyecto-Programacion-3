@@ -6,8 +6,8 @@ class Card extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            mensaje: 'Agregar a favoritos',
-            more: false
+            more: false,
+            iconoFav: 'fa-regular fa-heart'
         }
     }
 
@@ -22,9 +22,9 @@ class Card extends Component {
 
         if(favoritos.includes(this.props.datosPelicula.id)){
             this.setState({
-                mensaje: 'Quitar de favoritos'
+                iconoFav: 'fa-solid fa-heart'
             });
-        };
+        } 
     }
 
     modificarFavoritos(id){
@@ -40,12 +40,12 @@ class Card extends Component {
             favoritos.splice(sacarFav, 1);
 
             this.setState({
-                mensaje: 'Agregar a favoritos'
+                iconoFav: 'fa-regular fa-heart'
             });
         } else {
             favoritos.push(id);
             this.setState({
-                mensaje: 'Quitar de favoritos'
+                iconoFav: 'fa-solid fa-heart'
             })
         }
 
@@ -69,20 +69,24 @@ class Card extends Component {
     render() {
         return (
             <article className='movie-card'>
-
-                <img src={`https://image.tmdb.org/t/p/w500/${this.props.datosPelicula.poster_path}`} alt="" />
-                <h2>{this.props.datosPelicula.title}</h2> {/* Nombre */}
                 <Link to={`/detallePelicula/id/${this.props.datosPelicula.id}`}>
-                    <a> Ir a detalles </a>  
+                    <img alt={`Foto de ${this.props.datosPelicula.title}`} src={`https://image.tmdb.org/t/p/w500/${this.props.datosPelicula.poster_path}`} />
                 </Link>
-                <p className="boton" onClick={() => this.modificarFavoritos(this.props.datosPelicula.id)}>{this.state.mensaje}</p>
+                <div className='card-favdiv'>
+                <h2>{this.props.datosPelicula.title}</h2> {/* Nombre */}
+                <i className={this.state.iconoFav} onClick={() => this.modificarFavoritos(this.props.datosPelicula.id)}></i>
+                </div>
+                    <Link to={`/detallePelicula/id/${this.props.datosPelicula.id}`}>
+                        <p> Ir a detalles </p>
+                    </Link>
+                    
                 {this.state.more === true ?
-                <React.Fragment>
-                    <p>{this.props.datosPelicula.overview}</p>
-                    <p className='more' onClick={() => this.toggleMas()}>Ver menos</p>
+                    <React.Fragment>
+                        <p>{this.props.datosPelicula.overview}</p>
+                        <p className='more' onClick={() => this.toggleMas()}>Ver menos</p>
                     </React.Fragment>
-                :
-                <p className='more' onClick={() => this.toggleMas()}>Ver más</p>
+                    :
+                    <p className='more' onClick={() => this.toggleMas()}>Ver más</p>
                 }
 
             </article>

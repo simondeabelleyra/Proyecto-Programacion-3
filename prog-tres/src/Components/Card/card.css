@@ -40,3 +40,19 @@ box-shadow: 0rem 0rem 10px 8px rgb(110 156 159 / 25%);
 .boton:hover{
     cursor: pointer;
 }
+
+.card-favdiv{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-favdiv i{
+    font-size: 22px;
+}
+
+@media (max-width: 480px){
+    .movie-card{
+        width: 90%;
+    }
+}

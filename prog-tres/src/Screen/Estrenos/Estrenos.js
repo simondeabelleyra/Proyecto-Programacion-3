@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Card from '../Card/Card';
+import Card from '../../Components/Card/Card';
 import './estrenos.css';
 
 class Peliculas extends Component{
@@ -12,28 +12,32 @@ class Peliculas extends Component{
             valor: '',
             mensaje: '',
             loader: true,
+            moviesInicial: [],
+            cargarMas: true
         };
     };
 
 
-    filter(event) {
+    noSubmit(event) {
         event.preventDefault();
-        this.setState({
-            peliculasEnCartel: this.state.peliculasEnCartel.filter(pelicula => 
-                    pelicula.title != undefined ?
-                    pelicula.title.toLowerCase().includes(this.state.valor):
-                    console.log(pelicula.title)
-                )
-        })
     }
 
     controlarCambios(event){
-        event.target.value === '' ?
-        this.componentDidMount() :
         this.setState({
-            valor: event.target.value
-        },
-        () => console.log(event.target.value))
+            valor: event.target.value,
+            cargarMas: false
+        },() => console.log(event.target.value))
+
+        let peliculasFiltradas = this.state.moviesInicial.filter(pelicula => pelicula.title.toLowerCase().includes(event.target.value.toLowerCase()));
+        this.setState({
+            peliculasEnCartel: peliculasFiltradas,
+        })
+
+        if(event.target.value === ''){
+            this.setState({
+                cargarMas: true
+            })
+        }
     }
 
 
@@ -41,7 +45,8 @@ class Peliculas extends Component{
         fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=1845c94396255a256363182ed898e8fc&language=en-US&page=${this.state.page}`) 
             .then(response => response.json())
             .then(data => this.setState({
-                peliculasEnCartel: this.state.peliculasEnCartel.concat(data.results)
+                peliculasEnCartel: this.state.peliculasEnCartel.concat(data.results),
+                moviesInicial: this.state.moviesInicial.concat(data.results)
 
             }))
             .catch(error => console.log(error));
@@ -55,7 +60,7 @@ class Peliculas extends Component{
         .then(response => response.json())
         .then(data => this.setState({
             peliculasEnCartel: data.results,
-            moreMovies: data.results,
+            moviesInicial: data.results,
             page: this.state.page + 1,
             loader: false
         }))
@@ -68,23 +73,24 @@ class Peliculas extends Component{
             <main>
                 <div className="buscador-home">
                     <h2>Filtro:</h2>
-                    <form onSubmit={(event) => this.filter(event)}>
+                    <form onSubmit={(event) => this.noSubmit(event)}>
                         <input type="text" onChange={(event) => this.controlarCambios(event)} value={this.state.valor} />
                         <button type='submit'><i className="fa-solid fa-filter"></i></button>
                     </form>
                     <p>{this.state.mensaje}</p>
                 </div>
                 {this.state.loader === true ?
-                    <img src='../../images/loader.gif' /> :
+                    <img src='../../images/loader.gif' alt="Loader"/> :
                     <React.Fragment>
                         <h2 className='title-home'>Peliculas en cartel</h2>
-
+                        {this.state.peliculasEnCartel.length === 0 ? <h3 className="no-results">No hay películas que cumplan con ese filtro</h3>: null}
                         <section className='cardContainer'>
                             {this.state.peliculasEnCartel.map((oneMovie, idx) => <Card key={oneMovie + idx} datosPelicula={oneMovie} />)},
                         </section>
+                        {this.state.cargarMas === true?
                         <div className='div-vermas'>
                             <button className='load-more' onClick={() => this.verMas()}>Load More</button>
-                        </div>
+                        </div>: null}
                     </React.Fragment>
                 }
             </main>

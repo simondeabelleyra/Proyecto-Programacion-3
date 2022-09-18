@@ -1,13 +1,13 @@
 import './App.css';
 import React from 'react';
 import Header from './Components/Header/Header';
-import Home from './Components/Home/Home';
+import Home from './Screen/Home/Home';
 import Footer from './Components/Footer/Footer';
-import Favoritos from './Components/Favoritos/Favoritos';
-import Estrenos from './Components/Estrenos/Estrenos';
-import SeeAll from './Components/SeeAll/SeeAll';
-import Detalle from './Components/Detail/Detail';
-import NotFound from './Components/NotFound/NotFound';
+import Favoritos from './Screen/Favoritos/Favoritos';
+import Estrenos from './Screen/Estrenos/Estrenos';
+import SeeAll from './Screen/SeeAll/SeeAll';
+import Detalle from './Screen/Detail/Detail';
+import NotFound from './Screen/NotFound/NotFound';
 
 import {Link, Route, Switch} from 'react-router-dom';
 
