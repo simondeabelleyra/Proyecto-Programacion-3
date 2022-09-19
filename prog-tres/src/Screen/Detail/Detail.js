@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import './detail.css'
 
 class Detalle extends Component {
@@ -79,7 +78,7 @@ class Detalle extends Component {
         return (
             <React.Fragment>
                 {this.state.loader === true ?
-                <img  src='../../images/loader.gif' /> :
+                <img  src='../../images/loader.gif' alt='loader'/> :
             <article className='detail-card'>
 
                 <img src={`https://image.tmdb.org/t/p/w500/${this.state.datosPelicula.poster_path}`} alt="" />

@@ -9,7 +9,7 @@ import SeeAll from './Screen/SeeAll/SeeAll';
 import Detalle from './Screen/Detail/Detail';
 import NotFound from './Screen/NotFound/NotFound';
 
-import {Link, Route, Switch} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 
 
 function App() {

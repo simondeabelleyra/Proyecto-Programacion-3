@@ -9,7 +9,6 @@ class Home extends Component {
         this.state = {
             props: props,
             peliculas: [],
-            peliculasIniciales: [],
             valor: '',
             resultadosDeBusqueda: [],
             peliculasEnCartel: [],
@@ -24,7 +23,6 @@ class Home extends Component {
             .then(res => res.json())
             .then(data => this.setState({
                 peliculas: data.results,
-                peliculasIniciales: data.results,
                 loader: false
             }))
             .catch(err => console.log(err))
@@ -40,12 +38,6 @@ class Home extends Component {
     }
 
 
-    // buscarPeliculas(peliculaBuscada) {
-    //     let peliculasFiltradas = this.state.peliculasIniciales.filter(pelicula => pelicula.title.toLowerCase().includes(peliculaBuscada.toLowerCase()));
-    //     this.setState({
-    //         peliculas: peliculasFiltradas,
-    //     })
-    // }
 
     buscadorP(event) {
         event.preventDefault();
@@ -101,7 +93,7 @@ class Home extends Component {
                     <img src='../../images/loader.gif' alt="Loader"/>  :
                     <React.Fragment>
                         <section className='cardContainer'>
-                            {this.state.resultadosDeBusqueda.map((peliculaBuscada, idx) => <Card key={peliculaBuscada.name + idx} datosPelicula={peliculaBuscada} />)}
+                            {this.state.resultadosDeBusqueda.map((peliculaBuscada, idx) => <Card key={peliculaBuscada.title + idx} datosPelicula={peliculaBuscada} />)}
                         </section>
 
                         <div className='title-seeall'>
@@ -112,7 +104,7 @@ class Home extends Component {
                         </div>
                         <section className='cardContainer'>
                             {
-                                this.state.peliculas.map((unaPelicula, idx) => <Card key={unaPelicula.name + idx} datosPelicula={unaPelicula} />)
+                                this.state.peliculas.map((unaPelicula, idx) => <Card key={unaPelicula.title + idx} datosPelicula={unaPelicula} />)
                             }
                         </section >
                         
@@ -123,7 +115,7 @@ class Home extends Component {
                             </Link>
                         </div>
                         <section className='cardContainer'>
-                            {this.state.peliculasEnCartel.map((unaPeliculaC, idxx) => <Card key={unaPeliculaC.name + idxx} datosPelicula={unaPeliculaC} />)}
+                            {this.state.peliculasEnCartel.map((unaPeliculaC, idx) => <Card key={unaPeliculaC.title + idx} datosPelicula={unaPeliculaC} />)}
                         </section>
                     </React.Fragment>
                 }
